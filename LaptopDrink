@@ -1,0 +1,12 @@
+# Teleport laptop to your inventory
+if GetUser()=="Sebastian"
+   TakeLaptop()
+end
+
+void TakeLaptop() 
+    var laptopName = "NickeRoom_FlatScreen_FlatComputerScreen_2"
+    var place = "SebastianCreditCard"
+    var mf = Connect("MainFrame")
+    mf.SetPosition(laptopName,place)
+    DisconnectAll()
+end
