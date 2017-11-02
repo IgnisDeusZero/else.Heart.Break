@@ -1,0 +1,87 @@
+ClearText()
+if GetUser()!="Sebastian"
+    Exit()
+end
+
+Main()
+
+# === Functions ===
+
+void Main()
+    ClearText()
+    PrintMenu()
+    SelectMenu()
+    Exit()
+end
+
+void PrintMenu()
+    Print("1. Open all doors in room")
+    Print("2. Sell Soda")
+    Print("3. Door to...")
+    Print("Anything else: exit")
+end
+
+void SelectMenu() 
+    var input = Input("> ")
+    if input=="1"
+        OpenAllDoorsInRoom()
+    else if input=="2"
+        SellSoda()
+    else if input=="3"
+        DoorTo()
+    end
+end
+
+void Exit() 
+    PrintS("Exit.")
+    Sleep(1)
+    PrintS(".")
+    var mf = Connect("MainFrame")
+    Sleep(1)
+    PrintS(".")
+    mf.SetPosition(Name(), "SebastianCreditCard")
+    DisconnectAll()
+end
+ 
+void OpenAllDoorsInRoom() 
+    var mf = Connect("MainFrame")
+    var hugin = Connect("Hugin")
+    var room = mf.GetRoom("Sebastian")
+    var things = mf.GetThingsInRoom(room)
+    loop thing in things
+        if mf.GetTypeOfThing(thing)=="door"
+            hugin.Unlock(thing)
+            Print("Open "+thing)
+        end
+    end
+    Print("All doors opened")
+    DisconnectAll()
+end
+
+void SellSoda()
+    Print("0 and below to cancel")
+    var amount = Input("Amount: ")
+    if amount<=0
+        return
+    end
+    string name = GetUser()
+    var wellspring = Connect("Wellspringer")
+    wellspring.RegisterSeller(name, amount)
+    Print("Registred")
+    DisconnectAll()
+end
+
+void DoorTo()
+    var t = Input("Door to ")
+    var f = "Sebastian"
+    var def = "CentralServer"
+    var mf = Connect("MainFrame")
+    var door1 = "StrangeDoor3"
+    var door2 = "StrangeDoor4"
+    mf.SetPosition(door1, f)
+    mf.SetPosition(door2, t)
+    Sleep(10)
+    mf.SetPosition(door1, def)
+    mf.SetPosition(door2, def)
+    DisconnectAll()
+end
