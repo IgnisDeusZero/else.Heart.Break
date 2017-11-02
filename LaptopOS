@@ -74,7 +74,7 @@ end
 void DoorTo()
     var t = Input("Door to ")
     var f = "Sebastian"
-    var def = "CentralServer"
+    var def = "Testing_Poor_Bed_Poor_Bed_1"
     var mf = Connect("MainFrame")
     var door1 = "StrangeDoor3"
     var door2 = "StrangeDoor4"
